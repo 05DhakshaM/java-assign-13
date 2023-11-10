@@ -1,0 +1,69 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Scanner;
+
+class Student {
+    private String name;
+    private int rollNumber;
+    private double cgpa;
+
+    public Student(String name, int rollNumber, double cgpa) {
+        this.name = name;
+        this.rollNumber = rollNumber;
+        this.cgpa = cgpa;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getRollNumber() {
+        return rollNumber;
+    }
+
+    public double getCgpa() {
+        return cgpa;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", rollNumber=" + rollNumber +
+                ", cgpa=" + cgpa +
+                '}';
+    }
+}
+
+public class StudentListSorting {
+    public static void main(String[] args) {
+        ArrayList<Student> studentList = new ArrayList<>();
+
+       
+        Scanner scanner = new Scanner(System.in);
+        for (int i = 0; i < 20; i++) {
+            System.out.println("Enter information for Student " + (i + 1));
+            System.out.print("Name: ");
+            String name = scanner.nextLine();
+            System.out.print("Roll Number: ");
+            int rollNumber = scanner.nextInt();
+            System.out.print("CGPA: ");
+            double cgpa = scanner.nextDouble();
+
+            scanner.nextLine();
+            studentList.add(new Student(name, rollNumber, cgpa));
+        }
+
+      
+        Collections.sort(studentList, Comparator.comparing(Student::getName).reversed());
+
+       
+        System.out.println("\nSorted Student List (by name in descending order):");
+        for (Student student : studentList) {
+            System.out.println(student);
+        }
+
+        scanner.close();
+    }
+}
